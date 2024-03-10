@@ -7,8 +7,8 @@ from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import TfidfVectorizer
 import requests
 
-model_url = 'https://github.com/Prashanth-1/spam_classfication/blob/main/Model.pkl'
-tfidf_url = 'https://github.com/Prashanth-1/spam_classfication/blob/main/TFIDF.pkl'
+model_url = 'https://github.com/Prashanth-1/spam_final/blob/main/Bernouli_Model.pkl'
+tfidf_url = 'https://github.com/Prashanth-1/spam_final/blob/main/TFIDF_vectorizer.pkl'
 
 response_model = requests.get(model_url)
 response_tfidf = requests.get(tfidf_url)
