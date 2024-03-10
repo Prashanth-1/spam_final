@@ -5,14 +5,28 @@ import nltk
 from nltk.stem import PorterStemmer
 from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import TfidfVectorizer
+import requests
 
-# Load the trained model
-with open(r"C:\Users\Prashanth.Veeragoni\OneDrive - TANLA PLATFORMS LIMITED\Documents\project_prashanth\Bernouli_Model.pkl", 'rb') as file:
+model_url = 'https://github.com/Prashanth-1/spam_classfication/blob/main/Model.pkl'
+tfidf_url = 'https://github.com/Prashanth-1/spam_classfication/blob/main/TFIDF.pkl'
+
+response_model = requests.get(model_url)
+response_tfidf = requests.get(tfidf_url)
+
+with open('Model.pkl', 'wb') as file:
+    file.write(response_model.content)
+
+with open('TFIDF.pkl', 'wb') as file:
+    file.write(response_tfidf.content)
+
+# Load the model
+with open('Model.pkl', 'rb') as file:
     model = pickle.load(file)
 
-# Load TF-IDF
-with open(r"C:\Users\Prashanth.Veeragoni\OneDrive - TANLA PLATFORMS LIMITED\Documents\project_prashanth\TFIDF_vectorizer.pkl", 'rb') as file:
+# Load TF-IDF vectorizer
+with open('TFIDF.pkl', 'rb') as file:
     tfidf = pickle.load(file)
+
 
 # Function to remove special characters and punctuation
 def cleaning_text(text):
